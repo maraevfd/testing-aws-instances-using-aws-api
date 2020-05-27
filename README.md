@@ -9,30 +9,30 @@ Wrapper classes and their attributes:
 EC2Instance:
  - volumes
  - network_interfaces
- - get_tags
- - get_image_id
- - get_private_ip
- - get_public_ip
- - get_state
- - get_security_groups
- - get_total_information
+ - tags
+ - image_id
+ - private_ip
+ - public_ip
+ - state
+ - security_groups
+ - total_information
 ---
 EBSVolume:
- - get_tags
- - get_size
- - get_type
- - get_state
- - get_total_information
+ - tags
+ - size
+ - type
+ - state
+ - total_information
 ---
 NetworkInterface:
- - get_tags
- - get_tenant
- - get_ip_address
- - get_dns_name
- - get_status
- - get_vpc_id
- - get_total_information
+ - tags
+ - tenant
+ - ip_address
+ - dns_name
+ - status
+ - vpc_id
+ - total_information
 ### How to use:
 To get all the necessary information you need to use run.py file.
 You must pass the identifier and region of this instance to the constructor of the class.
-Further, using its methods, you can get the necessary information.
+Further, using its attributes, you can get the necessary information.
