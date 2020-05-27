@@ -24,50 +24,50 @@ class NetworkInterface(AWSResource):
             network_interface_id)
 
     @property
-    def get_tags(self):
+    def tags(self):
         """Method returns network interface tags."""
 
         return self.__network_interface.tag_set
 
     @property
-    def get_tenant(self):
+    def tenant(self):
         """Method returns a vpc object."""
 
         return self.__network_interface.vpc
 
     @property
-    def get_ip_address(self):
+    def ip_address(self):
         """The private IPv4 address associated with the network interface."""
 
         return self.__network_interface.private_ip_address
 
     @property
-    def get_dns_name(self):
+    def dns_name(self):
         """Method returns a private dns name."""
 
         return self.__network_interface.private_dns_name
 
     @property
-    def get_status(self):
+    def status(self):
         """Method returns the status of the network interface."""
 
         return self.__network_interface.status
 
     @property
-    def get_vpc_id(self):
+    def vpc_id(self):
         """Method returns vpc id of the network interface."""
 
         return self.__network_interface.vpc_id
 
     @property
-    def get_total_information(self):
+    def total_information(self):
         """The method returns information about the network interface."""
 
         return f'Total information about network interface ' \
                f'{self.network_interface_id}:\n' \
-               f'tags: {self.get_tags}\n' \
-               f'tenant: {self.get_tenant}\n' \
-               f'private ip address: {self.get_ip_address}\n' \
-               f'dns name: {self.get_dns_name}\n' \
-               f'status: {self.get_status}\n' \
-               f'vpc id: {self.get_vpc_id}'
+               f'tags: {self.tags}\n' \
+               f'tenant: {self.tenant}\n' \
+               f'private ip address: {self.ip_address}\n' \
+               f'dns name: {self.dns_name}\n' \
+               f'status: {self.status}\n' \
+               f'vpc id: {self.vpc_id}'

@@ -23,35 +23,35 @@ class EBSVolume(AWSResource):
         self.__volume = self.resource.Volume(volume_id)
 
     @property
-    def get_tags(self):
+    def tags(self):
         """Method returns volume tags."""
 
         return self.__volume.tags
 
     @property
-    def get_size(self):
+    def size(self):
         """The method returns the size of the volume in gigabytes."""
 
         return self.__volume.size
 
     @property
-    def get_type(self):
+    def type(self):
         """Method returns volume type."""
 
         return self.__volume.volume_type
 
     @property
-    def get_state(self):
+    def state(self):
         """The method returns the status of the volume at the moment."""
 
         return self.__volume.state
 
     @property
-    def get_total_information(self):
+    def total_information(self):
         """The method returns necessary information about the volume."""
 
         return f'Total information about volume {self.volume_id}:\n' \
-               f'tags: {self.get_tags}\n' \
-               f'size: {self.get_size}Gb\n' \
-               f'type: {self.get_type}\n' \
-               f'state: {self.get_state}'
+               f'tags: {self.tags}\n' \
+               f'size: {self.size}Gb\n' \
+               f'type: {self.type}\n' \
+               f'state: {self.state}'
