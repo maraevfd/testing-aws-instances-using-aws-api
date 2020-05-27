@@ -66,7 +66,7 @@ class NetworkInterface(AWSResource):
         return f'Total information about network interface ' \
                f'{self.network_interface_id}:\n' \
                f'tags: {self.get_tags}\n' \
-               f'tenant: {self.get_tenant()}\n' \
+               f'tenant: {self.get_tenant}\n' \
                f'private ip address: {self.get_ip_address}\n' \
                f'dns name: {self.get_dns_name}\n' \
                f'status: {self.get_status}\n' \
