@@ -1,6 +1,7 @@
 """The module contains the NetworkInterface class and its attributes."""
 
 from src.aws_wrappers.aws_resource import AWSResource
+from typing import Optional
 
 
 class NetworkInterface(AWSResource):
@@ -21,16 +22,16 @@ class NetworkInterface(AWSResource):
     def tags(self) -> dict:
         """Method returns network interface tags. Example: {'Tenant': 'tools', 'Name': 'report_portal'}"""
 
-        tags = {tag['Key']: tag['Value'] for tag in self.__network_interface.tag_set}
-        return tags
+        return {tag['Key']: tag['Value'] for tag in self.__network_interface.tag_set}
 
     @property
-    def tenant(self) -> str:
+    def tenant(self) -> Optional[str]:
         """Attribute returns tenant value for given network interface. Example: tools"""
 
         for tag in self.__network_interface.vpc.tags:
             if tag['Key'] == 'Tenant':
                 return tag['Value']
+        return None
 
     @property
     def ip_address(self) -> str:

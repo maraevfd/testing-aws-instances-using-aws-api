@@ -24,9 +24,7 @@ class EBSVolume(AWSResource):
         """Attribute returns volume tags.Example: {'Tenant': 'tools', 'Name': 'report_portal'}"""
 
         tags = self.__volume.tags
-        if tags:
-            tags = {tag['Key']: tag['Value'] for tag in self.__volume.tags}
-        return tags
+        return {tag['Key']: tag['Value'] for tag in self.__volume.tags} if tags else tags
 
     @property
     def size(self) -> int:

@@ -26,8 +26,7 @@ class AWSInstance(AWSResource):
     def tags(self) -> dict:
         """Attribute returns instance tags. Example: {'Tenant': 'tools', 'Name': 'report_portal'}"""
 
-        tags = {tag['Key']: tag['Value'] for tag in self.__instance.tags}
-        return tags
+        return {tag['Key']: tag['Value'] for tag in self.__instance.tags}
 
     @property
     def image_id(self) -> str:
@@ -57,8 +56,7 @@ class AWSInstance(AWSResource):
     def state(self) -> str:
         """Attribute returns the status of the instance. Example: running"""
 
-        state = self.__instance.state['Name']
-        return state
+        return self.__instance.state['Name']
 
     @property
     def security_groups(self) -> dict:
@@ -67,8 +65,7 @@ class AWSInstance(AWSResource):
         Example: {'whitelist-lgi': 'sg-0d516428f11e91e89', 'whitelist-connectra': 'sg-009081d7bccf48932'}
         """
 
-        groups = {group['GroupName']: group['GroupId'] for group in self.__instance.security_groups}
-        return groups
+        return {group['GroupName']: group['GroupId'] for group in self.__instance.security_groups}
 
     @property
     def total_information(self) -> str:
