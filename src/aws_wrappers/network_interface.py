@@ -18,13 +18,11 @@ class NetworkInterface(AWSResource):
             network_interface_id)
 
     @property
-    def tags(self) -> list:
-        """
-        Method returns network interface tags.
-        Example: [{'Key': 'Tenant', 'Value': 'tools'}, {'Key': 'Name', 'Value': 'report_portal'}]
-        """
+    def tags(self) -> dict:
+        """Method returns network interface tags. Example: {'Tenant': 'tools', 'Name': 'report_portal'}"""
 
-        return self.__network_interface.tag_set
+        tags = {tag['Key']: tag['Value'] for tag in self.__network_interface.tag_set}
+        return tags
 
     @property
     def tenant(self) -> str:
@@ -33,7 +31,6 @@ class NetworkInterface(AWSResource):
         for tag in self.__network_interface.vpc.tags:
             if tag['Key'] == 'Tenant':
                 return tag['Value']
-        return 'None'
 
     @property
     def ip_address(self) -> str:

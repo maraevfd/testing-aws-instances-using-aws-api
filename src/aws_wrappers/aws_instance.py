@@ -23,19 +23,23 @@ class AWSInstance(AWSResource):
                                    for network_interface in self.__instance.network_interfaces]
 
     @property
-    def tags(self) -> list:
-        """
-        Attribute returns instance tags.
-        Example: [{'Key': 'Tenant', 'Value': 'tools'}, {'Key': 'Name', 'Value': 'report_portal'}]
-        """
+    def tags(self) -> dict:
+        """Attribute returns instance tags. Example: {'Tenant': 'tools', 'Name': 'report_portal'}"""
 
-        return self.__instance.tags
+        tags = {tag['Key']: tag['Value'] for tag in self.__instance.tags}
+        return tags
 
     @property
     def image_id(self) -> str:
         """Attribute returns instance image id. Example: ami-0062c497b55437b01"""
 
         return self.__instance.image_id
+
+    @property
+    def type(self) -> str:
+        """Attribute returns instance type. Example: r5.xlarge"""
+
+        return self.__instance.instance_type
 
     @property
     def private_ip(self) -> str:
@@ -50,20 +54,21 @@ class AWSInstance(AWSResource):
         return self.__instance.public_ip_address
 
     @property
-    def state(self) -> dict:
-        """Attribute returns the status of the instance. Example: {'Code': 16, 'Name': 'running'}"""
+    def state(self) -> str:
+        """Attribute returns the status of the instance. Example: running"""
 
-        return self.__instance.state
+        state = self.__instance.state['Name']
+        return state
 
     @property
-    def security_groups(self) -> list:
+    def security_groups(self) -> dict:
         """
         Attribute allows you to see security groups of the instance.
-        Example: [{'GroupName': 'whitelist-lgi', 'GroupId': 'sg-0d516428f11e91e89'}, {'GroupName':
-        'whitelist-connectra', 'GroupId': 'sg-009081d7bccf48932'}]
+        Example: {'whitelist-lgi': 'sg-0d516428f11e91e89', 'whitelist-connectra': 'sg-009081d7bccf48932'}
         """
 
-        return self.__instance.security_groups
+        groups = {group['GroupName']: group['GroupId'] for group in self.__instance.security_groups}
+        return groups
 
     @property
     def total_information(self) -> str:

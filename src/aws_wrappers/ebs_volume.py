@@ -20,13 +20,13 @@ class EBSVolume(AWSResource):
         self.__volume = self.resource.Volume(volume_id)
 
     @property
-    def tags(self) -> list:
-        """
-        Attribute returns volume tags.
-        Example: [{'Key': 'Tenant', 'Value': 'tools'}, {'Key': 'Name', 'Value': 'report_portal'}]
-        """
+    def tags(self) -> dict:
+        """Attribute returns volume tags.Example: {'Tenant': 'tools', 'Name': 'report_portal'}"""
 
-        return self.__volume.tags
+        tags = self.__volume.tags
+        if tags:
+            tags = {tag['Key']: tag['Value'] for tag in self.__volume.tags}
+        return tags
 
     @property
     def size(self) -> int:
