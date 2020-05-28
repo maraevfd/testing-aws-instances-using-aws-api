@@ -35,6 +35,12 @@ class AWSInstance(AWSResource):
         return self.__instance.image_id
 
     @property
+    def key_name(self) -> str:
+        """Attribute returns instance key name. Example: jenkins_access"""
+
+        return self.__instance.key_name
+
+    @property
     def type(self) -> str:
         """Attribute returns instance type. Example: r5.xlarge"""
 
@@ -66,6 +72,12 @@ class AWSInstance(AWSResource):
         """
 
         return {group['GroupName']: group['GroupId'] for group in self.__instance.security_groups}
+
+    @property
+    def root_device_type(self) -> str:
+        """Attribute returns the type of the root device. Example: ebs"""
+
+        return self.__instance.root_device_type
 
     @property
     def total_information(self) -> str:

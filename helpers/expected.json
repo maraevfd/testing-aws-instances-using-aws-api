@@ -1,0 +1,12 @@
+{
+  "state": "running",
+  "type": "t3.large",
+  "net_interfaces_number": 1,
+  "tags_number": 6,
+  "tag_name": "report_portal",
+  "ssh_key_name": "jenkins_access",
+  "root_device_type": "ebs",
+  "ebs_size": 50,
+  "private_ip": "100.96.255.103",
+  "public_ip": "18.196.198.93"
+}

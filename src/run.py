@@ -1,10 +1,10 @@
 """This module is designed to obtain information about the instance."""
 
 from src.aws_wrappers.aws_instance import AWSInstance
-
+import os
 
 if __name__ == '__main__':
-    ec2_instance = AWSInstance('i-06007db6d3063ca53', 'eu-central-1')
+    ec2_instance = AWSInstance(os.environ.get("INSTANCE_ID"), os.environ.get("REGION_NAME"))
     print(ec2_instance.total_information)
 
     volume = ec2_instance.volumes[0]

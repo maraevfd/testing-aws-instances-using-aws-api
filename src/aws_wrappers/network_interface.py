@@ -34,10 +34,16 @@ class NetworkInterface(AWSResource):
         return None
 
     @property
-    def ip_address(self) -> str:
+    def private_ip_address(self) -> str:
         """Attribute returns private IPv4 address associated with the network interface. Example: 100.96.255.103"""
 
         return self.__network_interface.private_ip_address
+
+    @property
+    def public_ip_address(self) -> str:
+        """Attribute returns private IPv4 address associated with the network interface. Example: 18.196.198.93"""
+
+        return self.__network_interface.association_attribute['PublicIp']
 
     @property
     def dns_name(self) -> str:
@@ -65,7 +71,8 @@ class NetworkInterface(AWSResource):
                f'{self.network_interface_id}:\n' \
                f'tags: {self.tags}\n' \
                f'tenant: {self.tenant}\n' \
-               f'private ip address: {self.ip_address}\n' \
+               f'private ip address: {self.private_ip_address}\n' \
+               f'public ip address: {self.public_ip_address}\n' \
                f'dns name: {self.dns_name}\n' \
                f'status: {self.status}\n' \
                f'vpc id: {self.vpc_id}'
