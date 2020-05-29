@@ -1,0 +1,6 @@
+{
+  "cpu_cores_number": 1,
+  "net_interfaces_number": 2,
+  "ram_size": 2048,
+  "partition_size": 10
+}
