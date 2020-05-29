@@ -15,7 +15,7 @@ def test_instance_type(ec2_instance, expected_data):
 
 def test_network_interface_number(ec2_instance, expected_data):
     logging.info(f'Actual network interfaces number: {len(ec2_instance.network_interfaces)}, '
-                f'expected network interfaces number: {expected_data["net_interfaces_number"]}')
+                 f'expected network interfaces number: {expected_data["net_interfaces_number"]}')
     assert len(ec2_instance.network_interfaces) == expected_data['net_interfaces_number']
 
 
@@ -36,7 +36,7 @@ def test_instance_key_name(ec2_instance, expected_data):
 
 def test_root_device_type(ec2_instance, expected_data):
     logging.info(f'Actual root device type: {ec2_instance.root_device_type}, '
-                f'expected root device type: {expected_data["root_device_type"]}')
+                 f'expected root device type: {expected_data["root_device_type"]}')
     assert ec2_instance.root_device_type == expected_data['root_device_type']
 
 
