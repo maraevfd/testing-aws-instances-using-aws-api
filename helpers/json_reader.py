@@ -1,11 +1,10 @@
 """Module contains a function to read expected data from json file."""
 
 import json
-import os
 
 
-def read_expected_data() -> dict:
+def read_expected_data(path_to_json) -> dict:
     """The function reads the json file and returns its content."""
 
-    with open(os.path.join(os.environ.get("PATH_TO_PROJECT"), 'helpers', 'expected.json')) as file:
+    with open(path_to_json) as file:
         return json.load(file)

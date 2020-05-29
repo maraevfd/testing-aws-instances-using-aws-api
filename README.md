@@ -53,4 +53,3 @@ Further, using its attributes, you can get the necessary information.
 ##### Special environment variables have been created:
 - REGION_NAME = eu-central-1
 - INSTANCE_ID = i-06007db6d3063ca53
-- PATH_TO_PROJECT = /home/fedor/boto3_project/onboarding-qa

@@ -14,7 +14,7 @@ def ec2_instance() -> AWSInstance:
 
 
 @pytest.fixture(scope='session')
-def expected_data() -> dict:
+def expected_data(request) -> dict:
     """Fixture returns a dictionary that contains the expected data for testing AWSInstance."""
-
-    return read_expected_data()
+    path_to_project = request.config.args[0].partition('/tests')[0]
+    return read_expected_data(os.path.join(path_to_project, 'helpers', 'expected_data.json'))
