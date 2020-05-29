@@ -1,15 +1,20 @@
+"""Module contains fixtures for testing aws instance."""
+
+import os
+import pytest
 from src.aws_wrappers.aws_instance import AWSInstance
 from helpers.json_reader import read_expected_data
-import pytest
 
 
 @pytest.fixture(scope='session')
-def ec2_instance():
-    ec2_instance = AWSInstance('i-06007db6d3063ca53', 'eu-central-1')
-    return ec2_instance
+def ec2_instance() -> AWSInstance:
+    """Fixture returns an AWSInstance object for its further testing."""
+
+    return AWSInstance(os.environ.get("INSTANCE_ID"), os.environ.get("REGION_NAME"))
 
 
 @pytest.fixture(scope='session')
-def expected_data():
-    expected_data = read_expected_data()
-    return expected_data
+def expected_data() -> dict:
+    """Fixture returns a dictionary that contains the expected data for testing AWSInstance."""
+
+    return read_expected_data()

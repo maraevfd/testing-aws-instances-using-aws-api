@@ -36,3 +36,21 @@ NetworkInterface:
 To get all the necessary information you need to use run.py file.
 You must pass the identifier and region of this instance to the constructor of the class.
 Further, using its attributes, you can get the necessary information.
+---
+### Task 2: Using your wrapper classes you should test AWS Instance.
+##### The following tests were created for testing AWSInstance:
+- test_instance_state
+- test_instance_type
+- test_network_interface_number
+- test_instance_tags_count
+- test_instance_tag_name
+- test_instance_key_name
+- test_root_device_type
+- test_ebs_size
+- test_network_interface_private_ip
+- test_network_interface_public_ip
+---
+##### Special environment variables have been created:
+- REGION_NAME = eu-central-1
+- INSTANCE_ID = i-06007db6d3063ca53
+- PATH_TO_PROJECT = /home/fedor/boto3_project/onboarding-qa
