@@ -78,16 +78,3 @@ class AWSInstance(AWSResource):
         """Attribute returns the type of the root device. Example: ebs"""
 
         return self.__instance.root_device_type
-
-    @property
-    def total_information(self) -> str:
-        """Attribute returns necessary information about the instance."""
-
-        return f'Total information:\ntags: {self.tags}\n' \
-               f'private ip address: {self.private_ip}\n' \
-               f'image id: {self.image_id}\n' \
-               f'public ip address: {self.public_ip}\n' \
-               f'state: {self.state}\n' \
-               f'security groups: {self.security_groups}\n'\
-               f'number of volumes: {len(self.volumes)}\n' \
-               f'number of network interfaces: {len(self.network_interfaces)}'

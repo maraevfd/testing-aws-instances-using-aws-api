@@ -43,13 +43,3 @@ class EBSVolume(AWSResource):
         """Attribute returns the status of the volume at the moment. Example: in-use"""
 
         return self.__volume.state
-
-    @property
-    def total_information(self) -> str:
-        """Attribute returns necessary information about the volume."""
-
-        return f'Total information about volume {self.volume_id}:\n' \
-               f'tags: {self.tags}\n' \
-               f'size: {self.size}Gb\n' \
-               f'type: {self.type}\n' \
-               f'state: {self.state}'

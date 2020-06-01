@@ -53,3 +53,5 @@ Further, using its attributes, you can get the necessary information.
 ##### Special environment variables have been created:
 - REGION_NAME = eu-central-1
 - INSTANCE_ID = i-06007db6d3063ca53
+---
+####To get the correct expected results, a file with the name expected_data.json should be in the directory with the tests
