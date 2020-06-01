@@ -62,17 +62,3 @@ class NetworkInterface(AWSResource):
         """Attribute returns vpc id of the network interface. Example: vpc-05569a6be97c3cfd3"""
 
         return self.__network_interface.vpc_id
-
-    @property
-    def total_information(self) -> str:
-        """Attribute returns information about the network interface."""
-
-        return f'Total information about network interface ' \
-               f'{self.network_interface_id}:\n' \
-               f'tags: {self.tags}\n' \
-               f'tenant: {self.tenant}\n' \
-               f'private ip address: {self.private_ip_address}\n' \
-               f'public ip address: {self.public_ip_address}\n' \
-               f'dns name: {self.dns_name}\n' \
-               f'status: {self.status}\n' \
-               f'vpc id: {self.vpc_id}'
