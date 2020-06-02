@@ -1,8 +1,10 @@
 """The module contains the AWSInstance class and its attributes."""
 
+import logging
 from src.aws_wrappers.aws_resource import AWSResource
 from src.aws_wrappers.ebs_volume import EBSVolume
 from src.aws_wrappers.network_interface import NetworkInterface
+from typing import Optional
 
 
 class AWSInstance(AWSResource):
@@ -23,10 +25,14 @@ class AWSInstance(AWSResource):
                                    for network_interface in self.__instance.network_interfaces]
 
     @property
-    def tags(self) -> dict:
+    def tags(self) -> Optional[dict]:
         """Attribute returns instance tags. Example: {'Tenant': 'tools', 'Name': 'report_portal'}"""
 
-        return {tag['Key']: tag['Value'] for tag in self.__instance.tags}
+        try:
+            return {tag['Key']: tag['Value'] for tag in self.__instance.tags}
+        except KeyError:
+            logging.error('Invalid instance tag data received, check it!')
+            return None
 
     @property
     def image_id(self) -> str:
@@ -59,19 +65,26 @@ class AWSInstance(AWSResource):
         return self.__instance.public_ip_address
 
     @property
-    def state(self) -> str:
+    def state(self) -> Optional[str]:
         """Attribute returns the status of the instance. Example: running"""
 
-        return self.__instance.state['Name']
+        try:
+            return self.__instance.state['Name']
+        except KeyError:
+            logging.error('Unable to retrieve AWSInstance state!')
+            return None
 
     @property
-    def security_groups(self) -> dict:
+    def security_groups(self) -> Optional[dict]:
         """
         Attribute allows you to see security groups of the instance.
         Example: {'whitelist-lgi': 'sg-0d516428f11e91e89', 'whitelist-connectra': 'sg-009081d7bccf48932'}
         """
-
-        return {group['GroupName']: group['GroupId'] for group in self.__instance.security_groups}
+        try:
+            return {group['GroupName']: group['GroupId'] for group in self.__instance.security_groups}
+        except KeyError:
+            logging.error('KeyError in AWSInstance security groups! Check it.')
+            return None
 
     @property
     def root_device_type(self) -> str:

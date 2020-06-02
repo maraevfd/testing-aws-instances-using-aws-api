@@ -22,8 +22,8 @@ def test_ram_size(ram_size, expected_ram_size):
 
 
 def test_partition_size(partition_size, expected_partition_size):
-    logging.info(f'Actual partition size: {partition_size}Gb,'
-                 f' expected partition size: {expected_partition_size}Gb, ')
+    logging.info(f'Actual partition size: {partition_size}Gb, '
+                 f'expected partition size: {expected_partition_size}Gb, ')
     assert partition_size >= expected_partition_size, "Partition size does not match!"
 
 
