@@ -1,7 +1,10 @@
 """The module contains the LinuxHost class and its attributes."""
 
+import logging
+import socket
 import testinfra
 from helpers.exec_decorator import exec_command_decorator
+from paramiko import AuthenticationException
 from typing import Optional
 
 
@@ -47,11 +50,20 @@ class LinuxHost:
         """
 
         self.backend = f'paramiko://{username}@{ip_address}'
-        self.test_host = testinfra.host
         self.host = testinfra.get_host(self.backend, ssh_identity_file=path_to_ssh_key)
+        self.host_is_available = self.__check_host_availability()
         self.network_interfaces = [HostNetworkInterface(interface, self.host)
                                    for interface in self.get_network_interfaces()
                                    if HostNetworkInterface(interface, self.host).is_interface_exists()]
+
+    def __check_host_availability(self) -> bool:
+        """Method returns True if remote server is available."""
+
+        try:
+            self.host.run("uptime").stdout
+        except Exception as error:
+            assert False, f'Linux host is not available! Please, check your input data and host state. {error}'
+        return True
 
     @exec_command_decorator
     def get_cpu_cores_number(self) -> int:

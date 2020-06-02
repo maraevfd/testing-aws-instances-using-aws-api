@@ -14,6 +14,6 @@ def expected_data(request) -> Optional[dict]:
 
     try:
         return read_expected_data(os.path.join(request.config.invocation_dir, EXPECTED_DATA_FILE))
-    except FileNotFoundError:
-        logging.error('File with expected data not found!')
+    except FileNotFoundError as error:
+        logging.error('File with expected data not found!', error)
         return None

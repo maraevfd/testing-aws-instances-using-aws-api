@@ -41,7 +41,7 @@ def test_root_device_type(ec2_instance, expected_root_device):
 
 
 def test_ebs_size(ec2_instance, expected_volume_size):
-    for volume in ec2_instance.volumes:
+    for volume in ec2_instance.get_volumes():
         logging.info(f'Actual EBS volume size: {volume.size}, expected EBS volume size:{expected_volume_size}')
         assert volume.size >= expected_volume_size, 'Invalid volume size!'
 

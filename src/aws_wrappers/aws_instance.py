@@ -18,11 +18,15 @@ class AWSInstance(AWSResource):
 
         super(AWSInstance, self).__init__(region_name)
         self.instance_id = instance_id
-        self.__instance = self.resource.Instance(instance_id)
-        self.volumes = [EBSVolume(volume.id, region_name)
-                        for volume in self.__instance.volumes.all()]
-        self.network_interfaces = [NetworkInterface(network_interface.id, region_name)
-                                   for network_interface in self.__instance.network_interfaces]
+        self.region_name = region_name
+        self.__instance = self.__get_connection()
+
+    def __get_connection(self):
+        try:
+            connect = self.resource.Instance(self.instance_id)
+        except Exception as error:
+            assert False, f'AWS Instance is not available! {error}'
+        return connect
 
     @property
     def tags(self) -> Optional[dict]:
@@ -80,6 +84,7 @@ class AWSInstance(AWSResource):
         Attribute allows you to see security groups of the instance.
         Example: {'whitelist-lgi': 'sg-0d516428f11e91e89', 'whitelist-connectra': 'sg-009081d7bccf48932'}
         """
+
         try:
             return {group['GroupName']: group['GroupId'] for group in self.__instance.security_groups}
         except KeyError:
@@ -91,3 +96,14 @@ class AWSInstance(AWSResource):
         """Attribute returns the type of the root device. Example: ebs"""
 
         return self.__instance.root_device_type
+
+    def get_network_interfaces(self) -> list:
+        """Method returns a list of network interfaces for this instance."""
+
+        return [NetworkInterface(network_interface.id, self.region_name) for network_interface in
+                self.__instance.network_interfaces]
+
+    def get_volumes(self) -> list:
+        """Method returns a list of EBS volumes for this instance."""
+
+        return [EBSVolume(volume.id, self.region_name) for volume in self.__instance.volumes.all()]
