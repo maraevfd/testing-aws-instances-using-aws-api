@@ -24,6 +24,7 @@ EBSVolume:
  - state
  - total_information
 ---
+
 NetworkInterface:
  - tags
  - tenant
