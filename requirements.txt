@@ -36,7 +36,7 @@ paramiko==2.7.1
 pbr==5.4.5
 pluggy==0.13.1
 prettytable==0.7.2
-py==1.8.1
+py==1.10.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
