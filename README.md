@@ -7,7 +7,7 @@ which would contain all needed attributes for appropriate class description.
 ---
 Wrapper classes and their attributes:
 EC2Instance:
- - volumeRs
+ - volumes
  - network_interfaces
  - tags
  - image_id
@@ -24,6 +24,7 @@ EBSVolume:
  - state
  - total_information
 ---
+
 NetworkInterface:
  - tags
  - tenant
